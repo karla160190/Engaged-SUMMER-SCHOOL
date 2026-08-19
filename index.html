@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audience-Engaged Journalism — Field Guide | BIRN ECR Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14171f;
+    --ink-soft:#1c2029;
+    --paper:#ede6d6;
+    --paper-dim:#e2dac6;
+    --paper-line:#c9bfa6;
+    --stamp:#a8382c;
+    --stamp-dim:#8a3025;
+    --teal:#3f6b66;
+    --teal-bright:#5a9a92;
+    --muted:#8b8577;
+    --muted-on-paper:#6b654f;
+    --max-w:760px;
+  }
+ 
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+ 
+  body{
+    margin:0;
+    background:var(--ink);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(63,107,102,0.10), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(168,56,44,0.06), transparent 50%);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+ 
+  a{color:inherit;}
+ 
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+ 
+  /* ---------- HEADER ---------- */
+  header.hero{
+    padding:72px 0 44px;
+    position:relative;
+  }
+ 
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--teal-bright);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px;
+    height:1px;
+    background:var(--teal-bright);
+    display:inline-block;
+  }
+ 
+  h1{
+    font-family:'Newsreader', serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:clamp(34px, 6vw, 54px);
+    line-height:1.08;
+    margin:0 0 18px;
+    color:var(--paper);
+    letter-spacing:-0.01em;
+  }
+ 
+  .dek{
+    font-size:16px;
+    color:#c9c3b3;
+    max-width:52ch;
+    margin:0;
+  }
+ 
+  .stamp-badge{
+    position:absolute;
+    top:64px;
+    right:24px;
+    border:1.5px dashed rgba(168,56,44,0.65);
+    color:var(--stamp);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:8px 12px;
+    transform:rotate(-6deg);
+    border-radius:2px;
+    white-space:nowrap;
+    display:none;
+  }
+ 
+  @media(min-width:600px){
+    .stamp-badge{ display:block; }
+  }
+ 
+  /* ---------- CONTACT CARDS ---------- */
+  .contacts{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    margin:8px 0 56px;
+  }
+  @media(min-width:560px){
+    .contacts{ grid-template-columns:1fr 1fr; }
+  }
+ 
+  .card{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:3px;
+    padding:22px 22px 20px;
+    position:relative;
+    box-shadow:0 14px 30px -18px rgba(0,0,0,0.6);
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:-7px;
+    left:22px;
+    width:26px;
+    height:14px;
+    background:linear-gradient(135deg, #b8c4c2, #7f9490);
+    border-radius:3px;
+    box-shadow:0 2px 3px rgba(0,0,0,0.35);
+    transform:rotate(-3deg);
+  }
+  .card .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--muted-on-paper);
+    margin-bottom:8px;
+  }
+  .card .name{
+    font-family:'Newsreader', serif;
+    font-weight:600;
+    font-size:20px;
+    margin-bottom:8px;
+  }
+  .card a.mail{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--teal);
+    text-decoration:none;
+    border-bottom:1px solid rgba(63,107,102,0.35);
+    word-break:break-all;
+  }
+  .card a.mail:hover{ border-color:var(--teal); }
+ 
+  /* ---------- EXHIBIT SECTIONS ---------- */
+  .exhibit{
+    margin-bottom:40px;
+  }
+ 
+  .tab{
+    display:inline-flex;
+    align-items:baseline;
+    gap:10px;
+    background:var(--paper-dim);
+    color:var(--ink);
+    padding:9px 16px 8px;
+    border-radius:4px 4px 0 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .tab .num{ color:var(--stamp); font-weight:600; }
+ 
+  .panel{
+    background:rgba(237,230,214,0.04);
+    border:1px solid rgba(237,230,214,0.14);
+    border-top:none;
+    border-radius:0 6px 6px 6px;
+    padding:22px 22px 8px;
+  }
+ 
+  .exhibit h2{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:22px;
+    margin:0 0 6px;
+    color:var(--paper);
+  }
+  .exhibit .note{
+    font-size:14px;
+    color:var(--muted);
+    margin:0 0 16px;
+    max-width:56ch;
+  }
+ 
+  ul.links{
+    list-style:none;
+    margin:0 0 16px;
+    padding:0;
+    border-top:1px solid rgba(237,230,214,0.12);
+  }
+  ul.links li{
+    border-bottom:1px solid rgba(237,230,214,0.12);
+  }
+  ul.links a{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    padding:13px 2px;
+    text-decoration:none;
+    transition:background 0.15s ease;
+  }
+  ul.links a:hover{ background:rgba(90,154,146,0.07); }
+  ul.links a:hover .title{ color:var(--teal-bright); }
+ 
+  ul.links .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    flex:0 0 20px;
+    padding-top:2px;
+  }
+  ul.links .body{ flex:1; min-width:0; }
+  ul.links .title{
+    display:block;
+    font-size:14.5px;
+    color:var(--paper);
+    line-height:1.4;
+  }
+  ul.links .domain{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    margin-top:3px;
+  }
+  ul.links .arrow{
+    flex:0 0 auto;
+    color:var(--muted);
+    font-size:14px;
+    padding-top:2px;
+  }
+ 
+  /* ---------- OPEN CALL ---------- */
+  .open-call{
+    margin-top:64px;
+    text-align:center;
+    padding:44px 20px 8px;
+    border-top:1px dashed rgba(237,230,214,0.25);
+  }
+  .open-call .lead{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .stamp-btn{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    text-decoration:none;
+    border:2px solid var(--stamp);
+    border-radius:3px;
+    padding:14px 30px;
+    transform:rotate(-2deg);
+    transition:transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  }
+  .stamp-btn:hover{
+    transform:rotate(0deg) scale(1.03);
+    background:var(--stamp);
+    color:var(--paper);
+  }
+ 
+  footer{
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid rgba(237,230,214,0.12);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    justify-content:space-between;
+  }
+ 
+  @media (max-width:480px){
+    header.hero{ padding-top:48px; }
+    .panel{ padding:18px 16px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+ 
+  <header class="hero">
+    <span class="stamp-badge">ECR&nbsp;Programme</span>
+    <div class="eyebrow">BIRN · Audience Engagement Resources</div>
+    <h1>A field guide to audience&#8209;engaged journalism</h1>
+    <p class="dek">Call-outs, maps, timelines and crowdsourced evidence — reference examples for reporters building stories with, and for, their audience.</p>
+  </header>
+ 
+  <section class="contacts" aria-label="Programme contacts">
+    <div class="card">
+      <div class="role">ECR Programme Coordinator</div>
+      <div class="name">Karla Junicic</div>
+      <a class="mail" href="mailto:karla.junicic@birnnetwork.org">karla.junicic@birnnetwork.org</a>
+    </div>
+    <div class="card">
+      <div class="role">Director, BIRN Macedonia</div>
+      <div class="name">Ana Petruševa</div>
+      <a class="mail" href="mailto:ana.petruseva@birnnetwork.org">ana.petruseva@birnnetwork.org</a>
+    </div>
+  </section>
+ 
+  <!-- EXHIBIT 1 -->
+  <div class="exhibit">
+    <div class="tab"><span class="num">EX.01</span> Callouts &amp; types of topics</div>
+    <div class="panel">
+      <h2>Asking the audience directly</h2>
+      <p class="note">BIRN callouts inviting readers to share first-hand experience on a specific issue.</p>
+      <ul class="links">
+        <li><a href="https://balkaninsight.com/2026/02/23/share-your-experience-overtourism-from-spain-to-turkey-and-the-balkans/bi/" target="_blank" rel="noopener">
+          <span class="idx">01</span>
+          <span class="body"><span class="title">Share your experience: overtourism, from Spain to Turkey and the Balkans</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://balkaninsight.com/2023/10/17/share-your-experience-tiktok-used-for-slut-shaming-girls-in-western-balkans/bi/" target="_blank" rel="noopener">
+          <span class="idx">02</span>
+          <span class="body"><span class="title">Share your experience: TikTok used for slut-shaming girls in the Western Balkans</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://balkaninsight.com/2025/07/03/a-state-backed-social-disease-how-gambling-flourishes-in-serbia-and-bosnia/bi/" target="_blank" rel="noopener">
+          <span class="idx">03</span>
+          <span class="body"><span class="title">A state-backed social disease: how gambling flourishes in Serbia and Bosnia</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  <!-- EXHIBIT 2 -->
+  <div class="exhibit">
+    <div class="tab"><span class="num">EX.02</span> Mapping evidence across the region</div>
+    <div class="panel">
+      <h2>Turning scattered reports into a map</h2>
+      <p class="note">Crowdsourced data points, plotted, to show scale that a single story can't.</p>
+      <ul class="links">
+        <li><a href="https://balkaninsight.com/2024/03/29/its-devastating-birn-maps-illegal-landfills-blighting-the-balkans/bi/" target="_blank" rel="noopener">
+          <span class="idx">01</span>
+          <span class="body"><span class="title">"It's devastating": BIRN maps illegal landfills blighting the Balkans</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://maphub.net/VidiVaka/nepristapna-makedonija" target="_blank" rel="noopener">
+          <span class="idx">02</span>
+          <span class="body"><span class="title">Nepristapna Makedonija — crowdsourced accessibility map</span><span class="domain">maphub.net</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  <!-- EXHIBIT 3 -->
+  <div class="exhibit">
+    <div class="tab"><span class="num">EX.03</span> Creating a timeline</div>
+    <div class="panel">
+      <h2>Sequencing evidence over time</h2>
+      <p class="note">When the pattern only becomes visible once events are laid out in order.</p>
+      <ul class="links">
+        <li><a href="https://balkaninsight.com/2023/09/04/hungarian-patients-wait-months-on-secret-hospital-registers-for-surgery/bi/" target="_blank" rel="noopener">
+          <span class="idx">01</span>
+          <span class="body"><span class="title">Hungarian patients wait months on secret hospital registers for surgery</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  <!-- EXHIBIT 4 -->
+  <div class="exhibit">
+    <div class="tab"><span class="num">EX.04</span> World examples</div>
+    <div class="panel">
+      <h2>How other newsrooms do it</h2>
+      <p class="note">International reference points for audience-powered investigations.</p>
+      <ul class="links">
+        <li><a href="https://www.propublica.org/series/state-of-disrepair" target="_blank" rel="noopener">
+          <span class="idx">01</span>
+          <span class="body"><span class="title">State of Disrepair — series</span><span class="domain">propublica.org</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://www.facebook.com/watch/?v=1866238687129116" target="_blank" rel="noopener">
+          <span class="idx">02</span>
+          <span class="body"><span class="title">Video example</span><span class="domain">facebook.com/watch</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://unbiasthenews.org/twenty-degrees-apart-how-urban-inequality-drives-indoor-heat-in-paris-and-barcelona/" target="_blank" rel="noopener">
+          <span class="idx">03</span>
+          <span class="body"><span class="title">Twenty degrees apart: how urban inequality drives indoor heat in Paris and Barcelona</span><span class="domain">unbiasthenews.org</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://crowdnewsroom.org/en/" target="_blank" rel="noopener">
+          <span class="idx">04</span>
+          <span class="body"><span class="title">CrowdNewsroom — platform for collaborative investigations</span><span class="domain">crowdnewsroom.org</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://correctiv.org/top-stories/2020/06/08/pillenkick/" target="_blank" rel="noopener">
+          <span class="idx">05</span>
+          <span class="body"><span class="title">Pillenkick</span><span class="domain">correctiv.org</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://www.brockovichdatacenter.com/community-stats.html" target="_blank" rel="noopener">
+          <span class="idx">06</span>
+          <span class="body"><span class="title">Community stats</span><span class="domain">brockovichdatacenter.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://birn.eu.com/news-and-events/funding-open-to-engage-your-audience-call-for-audience-engaged-journalism-grants/" target="_blank" rel="noopener">
+          <span class="idx">07</span>
+          <span class="body"><span class="title">Funding open to engage your audience: call for audience-engaged journalism grants</span><span class="domain">birn.eu.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  <!-- EXHIBIT 5 -->
+  <div class="exhibit">
+    <div class="tab"><span class="num">EX.05</span> Ana Petruševa — examples</div>
+    <div class="panel">
+      <h2>From the desk of BIRN Macedonia</h2>
+      <p class="note">Selected pieces built on reader-submitted evidence and tips.</p>
+      <ul class="links">
+        <li><a href="https://balkaninsight.com/2023/08/22/subscription-scams-the-mobile-users-paying-for-unwanted-services/bi/" target="_blank" rel="noopener">
+          <span class="idx">01</span>
+          <span class="body"><span class="title">Subscription scams: the mobile users paying for unwanted services</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://balkaninsight.com/2024/01/04/call-rejected-north-macedonias-paramedic-shortfall/bi/" target="_blank" rel="noopener">
+          <span class="idx">02</span>
+          <span class="body"><span class="title">Call rejected: North Macedonia's paramedic shortfall</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+        <li><a href="https://balkaninsight.com/2024/10/30/online-pyramid-scams-find-fertile-ground-in-north-macedonia/bi/" target="_blank" rel="noopener">
+          <span class="idx">03</span>
+          <span class="body"><span class="title">Online pyramid scams find fertile ground in North Macedonia</span><span class="domain">balkaninsight.com</span></span>
+          <span class="arrow">↗</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+ 
+  <div class="open-call">
+    <div class="lead">Now accepting applications</div>
+    <a class="stamp-btn" href="https://birn.eu.com/news-and-events/funding-open-to-engage-your-audience-call-for-audience-engaged-journalism-grants/" target="_blank" rel="noopener">Open Call · Grants</a>
+  </div>
+ 
+  <footer>
+    <span>BIRN — ECR Programme</span>
+    <span>karla.junicic@birnnetwork.org · ana.petruseva@birnnetwork.org</span>
+  </footer>
+ 
+</div>
+</body>
+</html>
+ 
